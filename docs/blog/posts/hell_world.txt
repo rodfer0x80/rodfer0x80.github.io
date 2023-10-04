@@ -1,0 +1,35 @@
+.##.....##.########.##.......##..........##......##..#######..########..##.......########.
+.##.....##.##.......##.......##..........##..##..##.##.....##.##.....##.##.......##.....##
+.##.....##.##.......##.......##..........##..##..##.##.....##.##.....##.##.......##.....##
+.#########.######...##.......##..........##..##..##.##.....##.########..##.......##.....##
+.##.....##.##.......##.......##..........##..##..##.##.....##.##...##...##.......##.....##
+.##.....##.##.......##.......##..........##..##..##.##.....##.##....##..##.......##.....##
+.##.....##.########.########.########.....###..###...#######..##.....##.########.########.
+
+
+
+1. What is this shit? Why is this a txt file with random ascii art?
+
+> I am hosting this for free on github pages using only static files.
+    It seemed like a nice way to host a blog, just some html and css
+    for the frontpage and all the posts in txt format,
+    because you know, txt files last forever and
+    are pretty easy and fun to write. Of course I overengineered
+    it with some scripts to update everything automagically
+    so I don't have to worry about it later, you see this
+    was one of the my projects, the ones I will be discussing
+    in this small corner of the internet, I will also be
+    following on some ideas, theories, tech rants and maybe
+    other shit too, who knows. You are free to use any of
+    my code to build your own corner of the internet.
+
+
+2. More exactly, what is this blog post about?
+
+> Oh right, nothing, this is just a test post to go with my code, 
+    just go read some other post.
+
+
+
+
+echo 'rodfer0x80' >> /dev/who?

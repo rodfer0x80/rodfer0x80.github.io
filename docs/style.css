@@ -1,0 +1,68 @@
+body {
+    background-color: #111111;
+    background-image: url('imgs/pirate.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #f00000;
+    width: 100%;
+    height: 100%;
+    margin-top: 3rem;
+    margin-left: 2rem;
+}
+
+@media screen and (max-width:767px) {
+    body {
+        margin-top: 1rem;
+        margin-left: 0.5rem;
+    }
+}
+
+h1 {
+    color: #f00000;
+    font-size: 2.5rem;
+}
+
+h3 {
+    color: #ffffff;
+    font-size: 1.75rem;
+}
+
+h4 {
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+h5 {
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+ul {
+    size: 24px;
+    color: #f00000;
+}
+
+li {
+    size: 24px;
+    color: #f00000;
+    font-size: 1.25rem;
+}
+
+a {
+    size: 24px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.25rem;
+}
+
+a::after {
+    size: 24px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.red {
+    color: #f00000;
+}

@@ -1,0 +1,54 @@
+ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
+|______|______|______|______|______|______|______|______|______|
+________           ______           _                ________   
+\ \ \ \ \          | ___ \         | |              / / / / /   
+ \ \ \ \ \         | |_/ /___ _ __ | |_            / / / / /    
+  \ \ \ \ \        |    // _ \ '_ \| __|          / / / / /     
+   \ \ \ \ \       | |\ \  __/ | | | |_          / / / / /      
+    \_\_\_\_\      \_| \_\___|_| |_|\__|        /_/_/_/_/       
+                                                                
+                                                                
+     ________      _____ _                      ________        
+    / / / / /     /  __ \ |                     \ \ \ \ \       
+   / / / / /      | /  \/ |__   __ _  ___  ___   \ \ \ \ \      
+  / / / / /       | |   | '_ \ / _` |/ _ \/ __|   \ \ \ \ \     
+ / / / / /        | \__/\ | | | (_| | (_) \__ \    \ \ \ \ \    
+/_/_/_/_/          \____/_| |_|\__,_|\___/|___/     \_\_\_\_\   
+                                                                
+                                                                
+ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\ /\    
+|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\| 
+
+1. What is going on?
+
+> Rising mortage rates for buyers meaning renting more expensive
+and corporate managed meaning even more expensive and bureaucratic.
+Rising living costs making the previous point more painful.
+Rising energy bills and gas prices meaning better for corporates to
+rent to families (huge market since most cant buy homes now) due to
+goverment intervention.
+
+
+2. What now?
+
+> Eventhough its harder to rent a house, there will be more cheap
+and shitty rooms to rent (at a higher price of course).
+Now the problem is the huge volume of people seeking rooms against
+the number of places available and stable on payroll. When a
+letting agents gets 300+ messages a day we have no chance of 
+finding a room unless we pay for premium subscriptions (not
+necessary altought the current situation is so bad in London that
+you need still need premium) and search properties by region and
+spam peoples' ads automagically. Then filter the responses and go
+do some viewings!
+I wrote a small python program to do the searching and spamming.
+CODE: [https://github.com/rodfer0x80/homeful/]
+
+
+3. Long time solutions?
+
+> Long time?
+
+
+
+echo 'rodfer0x80' >> /dev/who?
