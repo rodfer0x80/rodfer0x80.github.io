@@ -1,0 +1,124 @@
+body {
+    background-color: #111111;
+    background-image: url('imgs/pirate.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #f00000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 16px;
+}
+
+.container {
+    padding: 5%;
+    border: 2px solid #f00000;
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.2); /* Slightly darkens the background */
+    backdrop-filter: blur(2px); /* Adds a slight blur effect */
+}
+
+h1 {
+    color: #f00000;
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds shadow for better readability */
+}
+
+h2 {
+    color: #f00000;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds shadow for better readability */
+}
+
+h5 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+hr {
+    border-color: #f00000;
+    margin: 1.5rem 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 1rem 0;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+a:hover {
+    color: #f00000;
+}
+
+.red {
+    color: #f00000;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 7%;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    
+    h2 {
+        font-size: 2rem;
+    }
+
+    h5 {
+        font-size: 1.3rem;
+    }
+
+    a {
+        font-size: 1.7rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    .container {
+        padding: 10%;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h5 {
+        font-size: 1.1rem;
+    }
+
+    a {
+        font-size: 1.5rem;
+    }
+}
