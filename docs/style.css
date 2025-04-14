@@ -1,10 +1,10 @@
 body {
     background-color: #111111;
-    background-image: url('imgs/pirate.jpg');
+    background-image: url('imgs/burning_rose.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    color: #f00000;
+    color: #ffa000;
     margin: 0;
     padding: 0;
     display: flex;
@@ -16,7 +16,7 @@ body {
 
 .container {
     padding: 5%;
-    border: 2px solid #f00000;
+    border: 2px solid #ffa000;
     text-align: center;
     max-width: 800px;
     width: 90%;
@@ -25,14 +25,14 @@ body {
 }
 
 h1 {
-    color: #f00000;
+    color: #ffa000;
     font-size: 2.8rem;
     margin-bottom: 0.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
-    color: #f00000;
+    color: #ffa000;
     font-size: 2rem;
     margin-bottom: 0.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -46,7 +46,7 @@ h5 {
 }
 
 hr {
-    border-color: #f00000;
+    border-color: #ffa000;
     margin: 1.5rem 0;
 }
 
@@ -67,11 +67,11 @@ a {
 }
 
 a:hover {
-    color: #f00000;
+    color: #ffa000;
 }
 
-.red {
-    color: #f00000;
+.orange {
+    color: #ffa000;
 }
 
 @media screen and (max-width: 768px) {
