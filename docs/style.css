@@ -89,6 +89,10 @@ a {
     font-size: 1.4rem;
 }
 
+.blogpost {
+    font-size: 1.4rem;
+}
+
 a:hover {
     color: #ffa000;
 }
