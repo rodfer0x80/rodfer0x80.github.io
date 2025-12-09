@@ -90,7 +90,7 @@ a {
 }
 
 .blogpost {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 a:hover {
@@ -99,6 +99,14 @@ a:hover {
 
 .orange {
     color: #ffa000;
+}
+
+.white {
+    color: #ffffff;
+}
+
+h5.white {
+    color: #ffffff;
 }
 
 @media screen and (max-width: 768px) {
