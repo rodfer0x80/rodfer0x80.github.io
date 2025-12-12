@@ -4,7 +4,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    color: #ffa000;
+    color: #ffa500;
     margin: 0;
     padding: 0;
     display: flex;
@@ -21,7 +21,7 @@ p {
 
 .container {
     padding: 5%;
-    border: 2px solid #ffa000;
+    border: 2px solid #ffa500;
     text-align: center;
     max-width: 800px;
     width: 90%;
@@ -30,21 +30,21 @@ p {
 }
 
 h1 {
-    color: #ffa000;
+    color: #ffa500;
     font-size: 2.8rem;
     margin-bottom: 0.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h2 {
-    color: #ffa000;
+    color: #ffa500;
     font-size: 2rem;
     margin-bottom: 0.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 h3 {
-    color: #ffa000;
+    color: #ffa500;
     font-size: 1.4rem;
     margin-top: 0.7rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -58,14 +58,14 @@ h4 {
 }
 
 h5 {
-    color: #ffa000;
+    color: #ffa500;
     font-size: 1.4rem;
     margin-top: 0.5rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 hr {
-    border-color: #ffa000;
+    border-color: #ffa500;
     margin: 1.5rem 0;
 }
 
@@ -91,7 +91,7 @@ a {
 
 .footnote:hover {
     font-size: 1.4rem;
-    border-color: #ffa000;
+    border-color: #ffa500;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -100,11 +100,11 @@ a {
 }
 
 a:hover {
-    color: #ffa000;
+    color: #ffa500;
 }
 
 .orange {
-    color: #ffa000;
+    color: #ffa500;
 }
 
 .white {
