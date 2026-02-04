@@ -179,3 +179,23 @@ a:hover {
     }
 }
 
+table {
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+th, td {
+  border: 1px solid #111111;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #111111;
+  font-weight: bold;
+}
+
+td:hover {
+  background-color: #222222;
+}
