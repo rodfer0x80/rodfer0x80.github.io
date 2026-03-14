@@ -3,4 +3,5 @@ Disallow: *
 Allow: /
 Allow: /root
 Allow: /blog
+Allow: /articles
 Allow: /tracks
