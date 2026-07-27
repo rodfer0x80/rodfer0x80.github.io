@@ -17,8 +17,6 @@
 
     <p>Let's cut the bureaucratic bullshit and describe what they actually built. This was not a document-parsing research problem. It was a glorified PDF viewer. The pipeline is trivial: scan the physical pages, tie each one to an anonymous student ID via a QR code, and serve the images to teachers in a web portal for manual grading. Basic I/O. A relational database. A frontend. That's the whole machine.</p>
 
-    <p>A couple of competent devs living in Neovim could write a resilient Go backend, wire up Postgres, and provision the whole thing on a few Hetzner boxes in a matter of weeks, for somewhere between €10k and €20k. Instead the state spent north of €7 million over three years and shipped bloatware that choked on its own memory the first time real users logged in at the same time.</p>
-
     <h3>The "Staple" Excuse &amp; Day-1 Architecture Failures</h3>
 
     <p>When thousands of teachers logged in at once, the platform threw timeouts, served blank white pages, and lost scanned work. The government's official explanation? Teachers stapled the exams. Some of them stapled <em>through the QR code</em>, and pulling the staples out damaged the code, so the scanner couldn't read it.</p>
