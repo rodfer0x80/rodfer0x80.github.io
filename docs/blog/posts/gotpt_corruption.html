@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../style.css">
+  <title> The Inherent and Disgusting Incompetence Derived from the Portuguese Goverment Corruption </title>
+</head>
+<body>
+  <div class="container">
+      <h1> The Inherent and Disgusting Incompetence Derived from the Portuguese Goverment Corruption </h1>
+    <br>
+    <hr>
+
+    <p>There is a point where technical failure stops being a bug and becomes something else entirely: pure, undeniable, taxpayer-funded incompetence. For the Portuguese state, that point arrived this summer, when the €7 million digital exam pipeline it spent three years building fell over on contact with reality, delayed the national grades, and pushed the second phase of exams back for hundreds of thousands of students.</p>
+
+    <p>Let's cut the bureaucratic bullshit and describe what they actually built. This was not a document-parsing research problem. It was a glorified PDF viewer. The pipeline is trivial: scan the physical pages, tie each one to an anonymous student ID via a QR code, and serve the images to teachers in a web portal for manual grading. Basic I/O. A relational database. A frontend. That's the whole machine.</p>
+
+    <p>A couple of competent devs living in Neovim could write a resilient Go backend, wire up Postgres, and provision the whole thing on a few Hetzner boxes in a matter of weeks, for somewhere between €10k and €20k. Instead the state spent north of €7 million over three years and shipped bloatware that choked on its own memory the first time real users logged in at the same time.</p>
+
+    <h3>The "Staple" Excuse &amp; Day-1 Architecture Failures</h3>
+
+    <p>When thousands of teachers logged in at once, the platform threw timeouts, served blank white pages, and lost scanned work. The government's official explanation? Teachers stapled the exams. Some of them stapled <em>through the QR code</em>, and pulling the staples out damaged the code, so the scanner couldn't read it.</p>
+
+    <p>Sit with that for a second. Your €7M national pipeline is defeated by a piece of bent metal going through a piece of paper. That is not a user-error story. That is a garbage-software story. You know what physical objects do in the real world? They get torn, folded, coffee-stained, smudged, and yes, stapled. This is not an exotic edge case. This is Tuesday.</p>
+
+    <p><strong>You print a human-readable alphanumeric string under the barcode.</strong></p>
+
+    <p>The entire global logistics industry solved this decades ago. Every parcel that has ever moved has a code the machine reads and a code a human can read when the machine fails. When your scanner can't parse the QR, an admin reads the fallback string and types it into a text field. That's it. One input box. Deterministic fallback design, day one.</p>
+
+    <p>So the staple defense collapses into one of two admissions: either nobody thought to print a fallback identifier next to the code, or the software had no field for a human to key the code in manually when the scanner inevitably failed. Either way, the excuse indicts the builders, not the teachers. And then — because apparently the comedy needed a third act — a security review by an outside consultancy found a vulnerability serious enough to yank the whole platform offline mid-process. They paid consultants to build it, and paid more consultants to discover it was broken.</p>
+
+    <h3>Where Did the Millions Go?</h3>
+
+    <p>Not to load testing. Not to the people who could have written the fallback field. The money vanished into sixteen separate contracts spread across legacy IT consultancies, state institutes, and project managers whose entire deliverable is a risk-assessment PDF that nobody reads until it's time to assign blame.</p>
+
+    <p>Here is the part that should end careers: after €7.1 million and three years, the public contract records don't even make it possible to say <em>which contract paid for the platform that failed.</em> Sixteen contracts, and the accountability trail is so opaque that journalists poring over the public procurement portal can't pin the broken system to a single line item. The largest identifiable contract — around €1.5 million — went to a subsidiary inside a large multinational's Portuguese arm. That is the tell. This is what procurement optimized for: proximity, paperwork, and the right letterhead. Not the ability to ship software that survives a Monday morning.</p>
+
+    <h3>This Is a Meritocracy Problem</h3>
+
+    <p>Because that's the real rot underneath the technical failure. The state does not buy competence. It buys relationships. The tender process is a filter, and it filters <em>out</em> exactly the people who could build this — the two-person shops, the engineers who actually deploy things, the builders who'd have laughed at the spec and delivered in a month. Those people are never in the room. They can't navigate a procurement labyrinth designed by and for incumbents, and they don't want to. So the contract flows, as it always does, to whoever is closest to the process, not whoever is best at the work.</p>
+
+    <p>That's the machine. Reward proximity over ability, and you get exactly this: enterprise-premium invoices attached to weekend-hackathon output, defended in press conferences by ministers blaming office supplies. The Portuguese people are being robbed, and the robbery is dressed up as modernization.</p>
+
+    <p>Until the state stops treating tech procurement as a jobs program for crony middlemen and starts paying actual builders directly to write resilient infrastructure, the systems will keep crashing. And they'll keep blaming the staples.</p>
+
+    <hr>
+    <br>
+    <h5><a class="footnote" href="/blog"> << </a></h5>
+    <h5 class="white">echo <a class="footnote white" href="https://github.com/rodfer0x80/">'rodfer'</a> >> /dev/who?</h5>
+  </div>
+</body>
+</html>
