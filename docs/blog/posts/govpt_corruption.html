@@ -2,51 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../style.css">
-  <title> The Inherent and Disgusting Incompetence Derived from the Portuguese Goverment Corruption </title>
+  <meta name="description" content="How Portugal spent roughly €7M and three years to fail at grading exams digitally.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <title>Portuguese Government Corruption · rodfer</title>
 </head>
 <body>
-  <div class="container">
-    <h1> The Inherent and Disgusting Incompetence Derived from the Portuguese Goverment Corruption </h1>
-    <br>
-    <hr>
+  <div class="grain"></div>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="dot"></span>rodfer@archive:~$</a>
+    <nav>
+      <a href="/blog/">blog</a>
+      <a href="/articles/">articles</a>
+      <a href="/tracks/">tracks</a>
+      <a href="https://github.com/rodfer0x80">github</a>
+    </nav>
+  </header>
 
-    <p>There is a line where technical failure stops being a bug and becomes something worse: money spent, years burned, and nothing that works at the end of it. Portugal crossed that line this summer. After three years and roughly €7 million, the first attempt to grade the national secondary-school exams digitally fell apart. The grades were delayed, the second phase of exams was pushed back, and teachers spent weeks fighting a platform that couldn't reliably show them the work they were supposed to mark.</p>
+  <main class="wrap">
+    <a class="back" href="/blog/">&lt;&lt; cd ../blog</a>
+    <article style="margin-top:24px">
+      <h1>The Inherent and Disgusting Incompetence Derived from the Portuguese Government Corruption</h1>
+      <p class="lead">essay · procurement · €7M and a white screen</p>
 
-    <p>Let's be clear about what this system actually does, because the scope matters. Physical exams are scanned, each page tied to an anonymous ID by a QR code so the grader never sees whose paper it is, and the images are served to teachers in a web portal for manual marking. The genuinely hard, expensive part of that is physical: receiving, un-stapling, and scanning hundreds of thousands of pages, securely, against a hard deadline. The state bought seventy scanners with EU recovery funds and staffed a warehouse to do it. That part is real work, and I won't pretend otherwise.</p>
+      <p>There is a line where technical failure stops being a bug and becomes something worse: money spent, years burned, and nothing that works at the end of it. Portugal crossed that line this summer. After three years and roughly €7 million, the first attempt to grade the national secondary-school exams digitally fell apart. The grades were delayed, the second phase of exams was pushed back, and teachers spent weeks fighting a platform that couldn't reliably show them the work they were supposed to mark.</p>
 
-    <p>The part that failed is not that part. What collapsed was the software: the routing, the access control, the grading portal. And that is not a €7-million problem. A small team of competent engineers builds and hosts that class of web application for a fraction of the price, and provided thorough testing and security, in a couple months rather than years. You can argue with my numbers. You cannot argue that what shipped was worth what was paid, because it didn't work.</p>
+      <p>Let's be clear about what this system actually does, because the scope matters. Physical exams are scanned, each page tied to an anonymous ID by a QR code so the grader never sees whose paper it is, and the images are served to teachers in a web portal for manual marking. The genuinely hard, expensive part of that is physical: receiving, un-stapling, and scanning hundreds of thousands of pages, securely, against a hard deadline. The state bought seventy scanners with EU recovery funds and staffed a warehouse to do it. That part is real work, and I won't pretend otherwise.</p>
 
-    <h3>What "didn't work" actually meant</h3>
+      <p>The part that failed is not that part. What collapsed was the software: the routing, the access control, the grading portal. And that is not a €7-million problem. A small team of competent engineers builds and hosts that class of web application for a fraction of the price, and provided thorough testing and security, in a couple months rather than years. You can argue with my numbers. You cannot argue that what shipped was worth what was paid, because it didn't work.</p>
 
-    <p>Teachers reported the platform blocking and loading to a blank white page, grading items arriving late or not at all, and answers showing up cut off or incomplete. Some papers had to be re-scanned because the images were unusable, and some already-graded answers had to be marked a second time. At the end of the original deadline the Ministry admitted roughly 2% of answers were still unmarked and extended the correction window by 24 hours.</p>
+      <h3>What "didn't work" actually meant</h3>
 
-    <p>It goes deeper than slowness. Teachers' groups reported that the classification platform didn't guarantee a given answer went to only one grader, and didn't keep a reliable record of who had graded what — and the body running it acknowledged, in writing, that its own count of answers could be wrong, with already-marked responses reassigned to other teachers. Some teachers were convened to grade subjects they don't even teach. According to a parliament, graders were at one point forced to choose between delaying the process and disadvantaging students, and were instructed to give zero to correct answers that a scanning error had dropped into the wrong section of the paper. For a system whose entire job is to mark fairly and anonymously, that is the whole job, failing.</p>
+      <p>Teachers reported the platform blocking and loading to a blank white page, grading items arriving late or not at all, and answers showing up cut off or incomplete. Some papers had to be re-scanned because the images were unusable, and some already-graded answers had to be marked a second time. At the end of the original deadline the Ministry admitted roughly 2% of answers were still unmarked and extended the correction window by 24 hours.</p>
 
-    <h3>The "staple" excuse</h3>
+      <p>It goes deeper than slowness. Teachers' groups reported that the classification platform didn't guarantee a given answer went to only one grader, and didn't keep a reliable record of who had graded what — and the body running it acknowledged, in writing, that its own count of answers could be wrong, with already-marked responses reassigned to other teachers. Some teachers were convened to grade subjects they don't even teach. According to a parliament, graders were at one point forced to choose between delaying the process and disadvantaging students, and were instructed to give zero to correct answers that a scanning error had dropped into the wrong section of the paper. For a system whose entire job is to mark fairly and anonymously, that is the whole job, failing.</p>
 
-    <p>Pressed to explain it, the minister's account was that schools stapled the exams — sometimes through the QR code — and that removing the staples damaged the code so the scanner couldn't read it. The teachers' unions rejected that and pointed back at the platform itself: the failures, the delays, the credentials handed out too late.</p>
+      <h3>The "staple" excuse</h3>
 
-    <p>But take the staple story at face value for a second, because it indicts the software either way. Every logistics operation on the planet solved damaged machine-readable codes decades ago. You print a human-readable string next to the barcode, and when the scanner fails, a human reads it and types it in. In fact, OCR for machine written numbers has existed for over three decades, is very accurate and has been used by the UK Royal Mail for most of that time, reducing the human intervention needed. This was a lack of planning and an excess of incompetence from the designers to not include redundancy measures. If a bent staple through a QR code was enough to disrupt national routing, then either that fallback string wasn't printed, or the portal had no usable way for an operator to key the code in by hand. I don't have their source code, so I can't tell you which. But a system a staple can derail is, by definition, a system without a working fallback. That isn't an exotic edge case. That is day-one design.</p>
+      <p>Pressed to explain it, the minister's account was that schools stapled the exams — sometimes through the QR code — and that removing the staples damaged the code so the scanner couldn't read it. The teachers' unions rejected that and pointed back at the platform itself: the failures, the delays, the credentials handed out too late.</p>
 
-    <p>And after all of it, the platform was pulled offline mid-process when a security review by Deloitte found vulnerabilities in it. One outside firm was paid to build it; another was paid to discover it wasn't safe to run. Perhaps not only could this system have been build for cheaper by university students, perhaps it really was, only the skill issue also encapsulates the HR departments involved. The outcome has been such a joke, a similar failure could perhaps be achieved by running Claude in loop. Since doing things right doesn't seem to be of interest to the Portuguese Goverment, the least we can ask is that when they fail spetacularly, atleast they don't cost us millions in tax payer money. </p>
+      <p>But take the staple story at face value for a second, because it indicts the software either way. Every logistics operation on the planet solved damaged machine-readable codes decades ago. You print a human-readable string next to the barcode, and when the scanner fails, a human reads it and types it in. In fact, OCR for machine-written numbers has existed for over three decades, is very accurate, and has been used by the UK Royal Mail for most of that time, reducing the human intervention needed. This was a lack of planning and an excess of incompetence from the designers to not include redundancy measures. If a bent staple through a QR code was enough to disrupt national routing, then either that fallback string wasn't printed, or the portal had no usable way for an operator to key the code in by hand. I don't have their source code, so I can't tell you which. But a system a staple can derail is, by definition, a system without a working fallback. That isn't an exotic edge case. That is day-one design.</p>
 
-    <h3>Where did the millions go?</h3>
+      <p>And after all of it, the platform was pulled offline mid-process when a security review by Deloitte found vulnerabilities in it. One outside firm was paid to build it; another was paid to discover it wasn't safe to run. Perhaps not only could this system have been built for cheaper by university students, perhaps it really was — only the skill issue also encapsulates the HR departments involved. The outcome has been such a joke that a similar failure could perhaps be achieved by running Claude in a loop. Since doing things right doesn't seem to be of interest to the Portuguese Government, the least we can ask is that when they fail spectacularly, at least they don't cost us millions in taxpayer money.</p>
 
-    <p>Into sixteen separate contracts signed since 2023 for "dematerializing" the exams, worth around €7.1 million. Here is the detail that should end careers: reporting based on the public procurement portal couldn't even determine which of those contracts paid for the classification platform that failed. The single largest one that <em>can</em> be identified — about €1.5 million, to Axianseu Digital Consulting, part of Vinci Energies Portugal — wasn't even for the platform that broke. It was for a separate system to manage the assessment process end to end. Sixteen contracts, seven million euros, and the thing that actually collapsed is untraceable in the public record.</p>
+      <h3>Where did the millions go?</h3>
 
-    <h3>This is a meritocracy problem</h3>
+      <p>Into sixteen separate contracts signed since 2023 for "dematerializing" the exams, worth around €7.1 million. Here is the detail that should end careers: reporting based on the public procurement portal couldn't even determine which of those contracts paid for the classification platform that failed. The single largest one that <em>can</em> be identified — about €1.5 million, to Axianseu Digital Consulting, part of Vinci Energies Portugal — wasn't even for the platform that broke. It was for a separate system to manage the assessment process end to end. Sixteen contracts, seven million euros, and the thing that actually collapsed is untraceable in the public record.</p>
 
-    <p>The last part isn't a software story at all. When a state spends this kind of money for this kind of result, the fault isn't any single vendor — it's what the procurement machine is built to select for. It rewards the ability to navigate a tender: the incumbents, the consultancies, the firms fluent in the paperwork. It does not reward, and is not designed to find, the small teams who could actually ship this and would be ashamed to ship what shipped. The people most capable of doing the work are the least equipped to win the contract. That isn't a Portuguese quirk. It is what happens anywhere competence stops being the thing that gets you paid.</p>
+      <h3>This is a meritocracy problem</h3>
 
-    <p>Until that changes — until the state pays makers to build instead of paying middlemen to manage makers it never hired — this just repeats. New platform, new deadline, same collapse. And they'll blame the staples again.</p>
+      <p>The last part isn't a software story at all. When a state spends this kind of money for this kind of result, the fault isn't any single vendor — it's what the procurement machine is built to select for. It rewards the ability to navigate a tender: the incumbents, the consultancies, the firms fluent in the paperwork. It does not reward, and is not designed to find, the small teams who could actually ship this and would be ashamed to ship what shipped. The people most capable of doing the work are the least equipped to win the contract. That isn't a Portuguese quirk. It is what happens anywhere competence stops being the thing that gets you paid.</p>
 
-    <hr>
-    <br>
-    <h5><a class="footnote" href="/blog"> << </a></h5>
-    <h5 class="white">echo <a class="footnote white" href="https://github.com/rodfer0x80/">'rodfer'</a> >> /dev/who?</h5>
-  </div>
+      <p>Until that changes — until the state pays makers to build instead of paying middlemen to manage makers it never hired — this just repeats. New platform, new deadline, same collapse. And they'll blame the staples again.</p>
+    </article>
+
+    <div class="sig">
+      <span class="cmd">echo <a href="https://github.com/rodfer0x80/">'rodfer'</a> &gt;&gt; /dev/who?</span>
+      <a class="back" href="/blog/">&lt;&lt; back</a>
+    </div>
+  </main>
 </body>
 </html>

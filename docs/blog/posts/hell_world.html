@@ -2,22 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../style.css">
-  <title> hell world </title>
+  <meta name="description" content="hell world — the customary greeting, inverted.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <title>hell world · rodfer</title>
 </head>
 <body>
-  <div class="container">
-    <h1> hell world </h1>
-    <br>
-    <hr>
-    <h4>int main(int argc, char** argv)</h4>
-    <h4>{return write(2, (char*) "hell world!\n\0", 13);}</h4>
-    <hr>
-    <br>
-    <h5><a class="footnote" href="/blog"> << </a></h5>
-    <h5 class="white">echo <a class="footnote white" href="https://github.com/rodfer0x80/">'rodfer'</a> >> /dev/who?</h5>
-  </div>
+  <div class="grain"></div>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="dot"></span>rodfer@archive:~$</a>
+    <nav>
+      <a href="/blog/">blog</a>
+      <a href="/articles/">articles</a>
+      <a href="/tracks/">tracks</a>
+      <a href="https://github.com/rodfer0x80">github</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <a class="back" href="/blog/">&lt;&lt; cd ../blog</a>
+    <article style="margin-top:24px">
+      <h1>hell world</h1>
+      <p class="lead">C · the customary greeting, inverted</p>
+      <pre class="codeblock"><span class="kw">int</span> main(<span class="kw">int</span> argc, <span class="kw">char</span>** argv)
+{ <span class="kw">return</span> write(<span class="num">2</span>, (<span class="kw">char</span>*) <span class="str">"hell world!\n\0"</span>, <span class="num">13</span>); }</pre>
+      <p>Written to fd <code>2</code> — stderr. Where the honest output goes.</p>
+    </article>
+
+    <div class="sig">
+      <span class="cmd">echo <a href="https://github.com/rodfer0x80/">'rodfer'</a> &gt;&gt; /dev/who?</span>
+      <a class="back" href="/blog/">&lt;&lt; back</a>
+    </div>
+  </main>
 </body>
 </html>

@@ -2,24 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../style.css">
-  <title> articles </title>
+  <meta name="description" content="rodfer's articles — networks, systems, writeups.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <title>articles · rodfer</title>
 </head>
 <body>
-  <div class="container">
-    <h1> articles </h1>
-    <br>
-    <hr>
-    <h2> Networks </h2>
-    <ul>
-      <li><a class="blogpost" href="/articles/docs/l3vpn.pdf"> IP/MPLS L3VPN </a></li>
-      <li><a class="blogpost" href="/articles/docs/secure_energy_efficient_block_sizes.pdf"> On The Impact of Cryptographic Block Sizes on Energy Constrained Networking Embedded Systems </a></li>
-    </ul> 
-    <hr>
-    <h5><a class="blogpost" href='/'> << </a></h5>
-    <h5 class="white">echo <a class="footnote white" href="https://github.com/rodfer0x80/">'rodfer'</a> >> /dev/who?</h5>
-  </div>
+  <div class="grain"></div>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="dot"></span>rodfer@archive:~$</a>
+    <nav>
+      <a href="/blog/">blog</a>
+      <a href="/articles/">articles</a>
+      <a href="/tracks/">tracks</a>
+      <a href="https://github.com/rodfer0x80">github</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <a class="back" href="/">&lt;&lt; cd ..</a>
+    <p class="eyebrow" style="margin-top:22px">// articles</p>
+    <h1 class="title">articles</h1>
+    <p class="tagline">networks · systems · writeups</p>
+
+    <hr class="rule">
+
+    <p class="section-label">Networks</p>
+    <div class="postlist">
+      <a href="/articles/docs/l3vpn.pdf">
+        <div class="h">IP/MPLS L3VPN</div>
+        <div class="s">pdf · layer-3 VPNs over MPLS</div>
+      </a>
+      <a href="/articles/docs/secure_energy_efficient_block_sizes.pdf">
+        <div class="h">On the Impact of Cryptographic Block Sizes on Energy-Constrained Networking Embedded Systems</div>
+        <div class="s">pdf · crypto · embedded · energy</div>
+      </a>
+    </div>
+
+    <div class="sig">
+      <span class="cmd">echo <a href="https://github.com/rodfer0x80/">'rodfer'</a> &gt;&gt; /dev/who?</span>
+    </div>
+  </main>
 </body>
 </html>
