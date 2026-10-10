@@ -4,37 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="rodfer's blog — all opinions are mere hallucinations.">
+  <meta name="theme-color" content="#15151a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script src="/net.js" defer></script>
   <title>blog · rodfer</title>
 </head>
 <body>
-  <div class="grain"></div>
+  <canvas id="net" aria-hidden="true"></canvas>
+
   <header class="topbar">
-    <a class="brand" href="/"><span class="dot"></span>rodfer@archive:~$</a>
+    <a class="logo" href="/"><span class="dot"></span>rodfer's archive</a>
+    <nav aria-label="Main">
+      <a href="/blog/" aria-current="page">blog</a>
+      <a href="/articles/">articles</a>
+      <a href="/tracks/">tracks</a>
+      <a class="gh" href="https://github.com/rodfer0x80">github</a>
+    </nav>
   </header>
 
-  <main class="wrap">
-    <a class="back" href="/">&lt;&lt; cd ..</a>
-    <h1 class="title">blog</h1>
-    <p class="tagline">all opinions are mere hallucinations</p>
+  <main>
+    <section class="page-hero">
+      <h1 class="reveal" style="--d:80ms">blog</h1>
+      <p class="page-sub reveal" style="--d:160ms">all opinions are mere hallucinations</p>
+    </section>
 
-    <hr class="rule">
-
-    <div class="postlist">
-      <a href="/blog/posts/saving_on_a_scientific_calculator.html">
-        <div class="h">Saving on a Scientific Calculator</div>
-      </a>
-      <a href="/blog/posts/hell_world.html">
-        <div class="h">hell world</div>
-      </a>
-    </div>
-
-    <div class="sig">
-      <span class="cmd">echo <a href="https://github.com/rodfer0x80/">'rodfer'</a> &gt;&gt; /dev/who?</span>
-    </div>
+    <section class="section">
+      <div class="grid two reveal" style="--d:240ms">
+        <a class="card" href="/blog/posts/saving_on_a_scientific_calculator.html">
+          <h3>Saving on a Scientific Calculator</h3>
+        </a>
+        <a class="card" href="/blog/posts/hell_world.html">
+          <h3>hell world</h3>
+        </a>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p class="who"><strong>rodfer's archive</strong>all opinions are mere hallucinations</p>
+      <nav aria-label="Footer">
+        <a href="/blog/">blog</a>
+        <a href="/articles/">articles</a>
+        <a href="/tracks/">tracks</a>
+        <a href="https://github.com/rodfer0x80">github</a>
+        <a href="/docs/rodfer0x80.pdf">CV</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

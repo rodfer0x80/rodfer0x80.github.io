@@ -4,22 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Skip the scientific calculator: memorize a small log & trig table and estimate in your head.">
+  <meta name="theme-color" content="#15151a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script src="/net.js" defer></script>
   <title>Saving on a Scientific Calculator · rodfer</title>
 </head>
-<body>
-  <div class="grain"></div>
+<body data-net="calm">
+  <canvas id="net" aria-hidden="true"></canvas>
+
   <header class="topbar">
-    <a class="brand" href="/"><span class="dot"></span>rodfer@archive:~$</a>
+    <a class="logo" href="/"><span class="dot"></span>rodfer's archive</a>
+    <nav aria-label="Main">
+      <a href="/blog/" aria-current="page">blog</a>
+      <a href="/articles/">articles</a>
+      <a href="/tracks/">tracks</a>
+      <a class="gh" href="https://github.com/rodfer0x80">github</a>
+    </nav>
   </header>
 
-  <main class="wrap">
-    <a class="back" href="/blog/">&lt;&lt; cd ../blog</a>
-    <article style="margin-top:24px">
-      <h1>Saving on a Scientific Calculator</h1>
+  <main>
+    <section class="page-hero">
+      <h1 class="reveal" style="--d:80ms">Saving on a Scientific Calculator</h1>
+    </section>
+
+    <section class="section">
+      <div class="sheet reveal" style="--d:240ms">
+        <article>
 
       <p>When working on network-engineering projects, some calculations are in order in the realm of physics that may require a scientific calculator to reason about the changes of a signal for the information being transferred.</p>
 
@@ -64,12 +77,25 @@
       </div>
 
       <h2>Happy studying</h2>
-    </article>
-
-    <div class="sig">
-      <span class="cmd">echo <a href="https://github.com/rodfer0x80/">'rodfer'</a> &gt;&gt; /dev/who?</span>
-      <a class="back" href="/blog/">&lt;&lt; back</a>
-    </div>
+        </article>
+      </div>
+      <div class="post-actions">
+        <a class="btn btn-ghost" href="/blog/">back</a>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p class="who"><strong>rodfer's archive</strong>all opinions are mere hallucinations</p>
+      <nav aria-label="Footer">
+        <a href="/blog/">blog</a>
+        <a href="/articles/">articles</a>
+        <a href="/tracks/">tracks</a>
+        <a href="https://github.com/rodfer0x80">github</a>
+        <a href="/docs/rodfer0x80.pdf">CV</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>

@@ -4,33 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="rodfer's tracks — noise from the machine.">
+  <meta name="theme-color" content="#15151a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
+  <script src="/net.js" defer></script>
   <title>tracks · rodfer</title>
 </head>
 <body>
-  <div class="grain"></div>
+  <canvas id="net" aria-hidden="true"></canvas>
+
   <header class="topbar">
-    <a class="brand" href="/"><span class="dot"></span>rodfer@archive:~$</a>
+    <a class="logo" href="/"><span class="dot"></span>rodfer's archive</a>
+    <nav aria-label="Main">
+      <a href="/blog/">blog</a>
+      <a href="/articles/">articles</a>
+      <a href="/tracks/" aria-current="page">tracks</a>
+      <a class="gh" href="https://github.com/rodfer0x80">github</a>
+    </nav>
   </header>
 
-  <main class="wrap">
-    <a class="back" href="/">&lt;&lt; cd ..</a>
-    <h1 class="title">tracks</h1>
-    <p class="tagline">noise from the machine</p>
+  <main>
+    <section class="page-hero">
+      <h1 class="reveal" style="--d:80ms">tracks</h1>
+      <p class="page-sub reveal" style="--d:160ms">noise</p>
+    </section>
 
-    <hr class="rule">
-
-    <div class="track">
-      <h2>empathy</h2>
-      <audio controls preload="none" src="/tracks/audio/empathy.mp3"></audio>
-      <div class="links">
-        <a href="/tracks/audio/empathy.mp3" download>↓ empathy.mp3</a>
-        <a href="/tracks/audio/empathy_lyrics.txt">↓ lyrics.txt</a>
-      </div>
-      <div class="lyrics">So shattered, worlds collide and die
+    <section class="section">
+      <div class="card track reveal" style="--d:240ms">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+        <h3>empathy</h3>
+        <audio controls preload="none" src="/tracks/audio/empathy.mp3"></audio>
+        <div class="links">
+          <a href="/tracks/audio/empathy.mp3" download>↓ empathy.mp3</a>
+          <a href="/tracks/audio/empathy_lyrics.txt">↓ lyrics.txt</a>
+        </div>
+        <div class="lyrics">So shattered, worlds collide and die
 Don't preach to me it's justified
 Just illusions why you never see the stake
 The riots, the lies, the power that they seek
@@ -68,11 +78,21 @@ Dark clouds loom, but we spit out the rain
 Our will is a wall, outlasting their pain
 Ground shakes, we're wide awake, no more fake alibis
 We're the voice of the streets, throwing truth at the lies</div>
-    </div>
-
-    <div class="sig">
-      <span class="cmd">echo <a href="https://github.com/rodfer0x80/">'rodfer'</a> &gt;&gt; /dev/who?</span>
-    </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p class="who"><strong>rodfer's archive</strong>all opinions are mere hallucinations</p>
+      <nav aria-label="Footer">
+        <a href="/blog/">blog</a>
+        <a href="/articles/">articles</a>
+        <a href="/tracks/">tracks</a>
+        <a href="https://github.com/rodfer0x80">github</a>
+        <a href="/docs/rodfer0x80.pdf">CV</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
