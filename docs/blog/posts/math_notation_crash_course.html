@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A crash course in the mathematical notation used in maths and computer science papers: logic, sets, functions, sums, big-O, probability, linear algebra, algebra, calculus and graphs.">
+  <meta name="theme-color" content="#15151a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <!--
+    KaTeX renders the $$...$$ display formulas in this post (and only this post).
+    If the CDN is unreachable the raw TeX stays visible, which is still readable,
+    and is half the point of the post anyway.
+  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.querySelector('article'), {
+      /* Display math only: a single $ is deliberately NOT a delimiter,
+         so a stray dollar sign in prose can never swallow a paragraph. */
+      delimiters: [{ left: '$$', right: '$$', display: true }],
+      throwOnError: false
+    });"></script>
+  <script src="/net.js" defer></script>
+  <title>A Crash Course in Math Notation · rodfer</title>
+</head>
+<body data-net="calm">
+  <canvas id="net" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <a class="logo" href="/"><span class="dot"></span>rodfer's archive</a>
+    <nav aria-label="Main">
+      <a href="/blog/" aria-current="page">blog</a>
+      <a href="/articles/">articles</a>
+      <a href="/tracks/">tracks</a>
+      <a class="gh" href="https://github.com/rodfer0x80">github</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <h1 class="reveal" style="--d:80ms">A Crash Course in Math Notation</h1>
+      <p class="page-sub reveal" style="--d:160ms">for reading papers without guessing</p>
+    </section>
+
+    <section class="section">
+      <div class="sheet reveal" style="--d:240ms">
+        <article>
+
+      <p>Papers are written in a compression format that nobody formally teaches you to decompress. You pick it up from lectures, forget half of it during the years you spend shipping code, and then one day you open a paper and a single line of squiggles contains a whole paragraph of meaning you can't unpack.</p>
+
+      <p>This is my cheat sheet for getting that back. It covers the notation that turns up across maths, computer science and engineering papers, with each symbol shown alongside how you read it aloud and what it actually means. It's long, so skim to whatever section is hurting you.</p>
+
+      <!-- Table of contents: anchors match the id on each h2 below. -->
+      <nav class="toc" aria-label="Contents">
+        <ol>
+          <li><a href="#reading">How to read notation</a></li>
+          <li><a href="#logic">Logic and quantifiers</a></li>
+          <li><a href="#sets">Sets</a></li>
+          <li><a href="#functions">Functions and relations</a></li>
+          <li><a href="#sums">Sums, products and indices</a></li>
+          <li><a href="#asymptotics">Asymptotics</a></li>
+          <li><a href="#probability">Probability</a></li>
+          <li><a href="#linalg">Linear algebra</a></li>
+          <li><a href="#algebra">Modular arithmetic and algebra</a></li>
+          <li><a href="#calculus">Calculus and analysis</a></li>
+          <li><a href="#graphs">Graphs</a></li>
+          <li><a href="#cs">Computer science conventions</a></li>
+          <li><a href="#greek">Greek letters</a></li>
+          <li><a href="#practice">Practice</a></li>
+        </ol>
+      </nav>
+
+      <!-- ===================================================== -->
+      <h2 id="reading">How to read notation</h2>
+
+      <p>Every symbol expands into a sentence, and every paper defines its own dialect in a "Notation" or "Preliminaries" section. Read that section first, every time, even when it looks routine. That's where the author tells you whether ℕ starts at 0 or 1.</p>
+
+      <ol>
+        <li><strong>Expand it aloud.</strong> Turn each formula into an English sentence before you move on. If you can't, stop there, because the rest of the proof depends on it.</li>
+        <li><strong>Find the type of every symbol.</strong> Is <em>x</em> a number, a vector, a set, a function, a distribution or an algorithm? Most confusion is a type error in your head.</li>
+        <li><strong>Check the quantifiers.</strong> "For every x there is a y" and "there is a y for every x" are different claims, and the order matters.</li>
+        <li><strong>Plug in a tiny example.</strong> Use n = 2, a 2×2 matrix, or a 3-bit string. Abstraction falls apart quickly once you try one concrete case.</li>
+        <li><strong>Expect overloading.</strong> |x| can mean an absolute value, a string length or a set size. Context and the preliminaries decide which.</li>
+      </ol>
+
+      <p>Formulas below are typeset the way papers typeset them. If they show up as raw TeX, that's the source the author actually wrote, which is also worth learning to recognise.</p>
+
+      <!-- ===================================================== -->
+      <h2 id="logic">Logic and quantifiers</h2>
+
+      <p>Logic symbols are the grammar of every theorem, and misreading one flips the meaning of the whole statement.</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>¬P</th><td>not P</td><td>P is false</td></tr>
+            <tr><th>P ∧ Q</th><td>P and Q</td><td>both are true</td></tr>
+            <tr><th>P ∨ Q</th><td>P or Q</td><td>at least one is true (inclusive or)</td></tr>
+            <tr><th>P ⇒ Q</th><td>P implies Q</td><td>if P then Q; vacuously true when P is false</td></tr>
+            <tr><th>P ⇔ Q, iff</th><td>P if and only if Q</td><td>P ⇒ Q and Q ⇒ P</td></tr>
+            <tr><th>∀x</th><td>for all x</td><td>every x satisfies what follows</td></tr>
+            <tr><th>∃x</th><td>there exists x</td><td>at least one x does</td></tr>
+            <tr><th>∃!x</th><td>there exists a unique x</td><td>exactly one x does</td></tr>
+            <tr><th>:= or ≜</th><td>is defined as</td><td>the left side is a new name for the right side</td></tr>
+            <tr><th>≡</th><td>is equivalent to</td><td>logical equivalence, identity, or congruence mod n, depending on context</td></tr>
+            <tr><th>⊢</th><td>proves</td><td>derivable in a formal system</td></tr>
+            <tr><th>⊨</th><td>models</td><td>true in a model</td></tr>
+            <tr><th>∴ / ∵</th><td>therefore / because</td><td>proof shorthand</td></tr>
+            <tr><th>∎ or □</th><td>end of proof</td><td>QED</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>The order of quantifiers is everything.</strong></p>
+
+      <div class="math">$$\forall x \, \exists y : y > x \qquad \text{vs} \qquad \exists y \, \forall x : y > x$$</div>
+
+      <p>The first says "for every number there's a bigger one", which is true for the integers. The second says "there's one number bigger than all numbers", which is false. The symbols are the same, but swapping their order reverses whether the statement is true.</p>
+
+      <p><strong>Negation flips quantifiers.</strong> ¬(∀x P(x)) ⇔ ∃x ¬P(x), and ¬(∃x P(x)) ⇔ ∀x ¬P(x). You use this to build counterexamples and to read proofs by contradiction.</p>
+
+      <p><strong>Contrapositive.</strong> P ⇒ Q is equivalent to ¬Q ⇒ ¬P. Many proofs quietly prove the contrapositive instead and assume you'll notice.</p>
+
+      <p><strong>Prose abbreviations:</strong> <em>s.t.</em> means "such that". <em>w.r.t.</em> means "with respect to". <em>WLOG</em> means "without loss of generality", i.e. the other cases are symmetric. <em>resp.</em> means "respectively". <em>w.h.p.</em> means "with high probability". <em>a.s.</em> means "almost surely".</p>
+
+      <!-- ===================================================== -->
+      <h2 id="sets">Sets</h2>
+
+      <p>Almost every definition in a paper starts with "let X be the set of…", so set notation is the vocabulary everything else is written in.</p>
+
+      <h3>Standard number sets</h3>
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Symbol</th><th>Name</th><th>Contents</th></tr></thead>
+          <tbody>
+            <tr><th>ℕ</th><td>naturals</td><td>{0, 1, 2, …} or {1, 2, …}, because authors disagree, so check the preliminaries</td></tr>
+            <tr><th>ℤ</th><td>integers</td><td>{…, −1, 0, 1, …}, from the German <em>Zahlen</em></td></tr>
+            <tr><th>ℚ</th><td>rationals</td><td>fractions p/q</td></tr>
+            <tr><th>ℝ</th><td>reals</td><td>the continuum</td></tr>
+            <tr><th>ℂ</th><td>complex</td><td>a + bi</td></tr>
+            <tr><th>ℝ⁺, ℝ<sub>≥0</sub></th><td>positive / non-negative reals</td><td>subscripts and superscripts restrict a set</td></tr>
+            <tr><th>[n]</th><td>"bracket n"</td><td>{1, 2, …, n}, everywhere in CS and combinatorics</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Membership and operations</h3>
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Symbol</th><th>Read as</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>x ∈ A</th><td>x in A</td><td>x is an element of A</td></tr>
+            <tr><th>A ⊆ B</th><td>A subset of B</td><td>every element of A is in B, and A may equal B</td></tr>
+            <tr><th>A ⊊ B</th><td>proper subset</td><td>A ⊆ B and A ≠ B (some authors write ⊂ for ⊆, so check)</td></tr>
+            <tr><th>∅</th><td>empty set</td><td>{}</td></tr>
+            <tr><th>A ∪ B</th><td>A union B</td><td>in A or B</td></tr>
+            <tr><th>A ∩ B</th><td>A intersect B</td><td>in both</td></tr>
+            <tr><th>A \ B</th><td>A minus B</td><td>in A, not in B</td></tr>
+            <tr><th>Aᶜ, Ā</th><td>complement</td><td>everything in the universe that isn't in A</td></tr>
+            <tr><th>A △ B</th><td>symmetric difference</td><td>in exactly one of A and B</td></tr>
+            <tr><th>A × B</th><td>Cartesian product</td><td>all ordered pairs (a, b)</td></tr>
+            <tr><th>Aⁿ</th><td>n-fold product</td><td>n-tuples of elements of A</td></tr>
+            <tr><th>𝒫(A), 2<sup>A</sup></th><td>power set</td><td>the set of all subsets of A</td></tr>
+            <tr><th>|A|, #A</th><td>cardinality</td><td>number of elements</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Set-builder notation</strong> reads "the set of all x such that…". The bar or colon in the middle means "such that".</p>
+
+      <div class="math">$$E = \{\, x \in \mathbb{Z} : x \bmod 2 = 0 \,\} \qquad S = \{\, f(x) \mid x \in A \,\}$$</div>
+
+      <p>The left one is the even integers. The right one is the image of A under f, meaning every value f(x) for x in A.</p>
+
+      <p><strong>Tuples vs sets.</strong> (a, b) is ordered and allows repeats, while {a, b} is unordered and has no repeats. A graph is written G = (V, E) as a tuple because the order tells you which part is the vertices and which is the edges.</p>
+
+      <p><strong>Intervals.</strong> [a, b] includes both ends, (a, b) excludes both, and [a, b) includes only a. Some European texts write ]a, b[ for (a, b). And yes, (a, b) also means a pair, so context decides.</p>
+
+      <p>Quick sanity check: |A × B| = |A|·|B| and |𝒫(A)| = 2<sup>|A|</sup>, which is why the power set is also written 2<sup>A</sup>.</p>
+
+      <!-- ===================================================== -->
+      <h2 id="functions">Functions and relations</h2>
+
+      <p>A function signature in maths reads exactly like a type signature in code, with the domain going in and the codomain coming out.</p>
+
+      <div class="math">$$f : A \to B, \qquad x \mapsto x^2$$</div>
+
+      <p>Read it as "f maps A to B, sending x to x squared." The arrow → joins sets, which play the role of types, and the barred arrow ↦ joins elements, which play the role of values. As a signature it's just <code>f(x: A) -&gt; B</code>, with a body of <code>return x * x</code>.</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Notation</th><th>Read as</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>g ∘ f</th><td>g after f</td><td>(g ∘ f)(x) = g(f(x)), applied right to left</td></tr>
+            <tr><th>f⁻¹</th><td>f inverse</td><td>the inverse function, which exists only if f is a bijection</td></tr>
+            <tr><th>f⁻¹(S)</th><td>preimage of S</td><td>{x : f(x) ∈ S}, which exists for any f</td></tr>
+            <tr><th>f(S)</th><td>image of S</td><td>{f(x) : x ∈ S}</td></tr>
+            <tr><th>f|<sub>S</sub></th><td>f restricted to S</td><td>same rule, smaller domain</td></tr>
+            <tr><th>B<sup>A</sup></th><td>functions from A to B</td><td>all f : A → B, so |B<sup>A</sup>| = |B|<sup>|A|</sup></td></tr>
+            <tr><th>f(·, y)</th><td>f with a blank</td><td>a function of the dotted argument, with the others fixed</td></tr>
+            <tr><th>f ≡ c</th><td>f identically c</td><td>f(x) = c for every x</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Kinds of function.</strong></p>
+      <ul>
+        <li><strong>Injective</strong> (one-to-one) means different inputs give different outputs. Hash functions aren't injective, which is why collisions exist.</li>
+        <li><strong>Surjective</strong> (onto) means every element of B is hit by some input.</li>
+        <li><strong>Bijective</strong> means both, so f has an inverse. A permutation is a bijection from a set to itself.</li>
+      </ul>
+
+      <p><strong>Handy special functions.</strong></p>
+      <ul>
+        <li>⌊x⌋ is the floor (round down), ⌈x⌉ is the ceiling (round up), and ⌊x⌉ rounds to the nearest integer.</li>
+        <li>𝟙[P] is the indicator, which is 1 if P is true and 0 otherwise. It's also written [P] (the Iverson bracket).</li>
+        <li>In CS, log x usually means base 2, while in maths it usually means base e. ln is always base e, and lg is base 2.</li>
+      </ul>
+
+      <p><strong>Relations.</strong> A relation R on A is a subset of A × A, written a R b. An <em>equivalence relation</em> (~ or ≡) is reflexive, symmetric and transitive. It splits A into classes [a], and A/~ is the set of those classes. A <em>partial order</em> (≤ or ⪯) is reflexive, antisymmetric and transitive.</p>
+
+      <!-- ===================================================== -->
+      <h2 id="sums">Sums, products and indices</h2>
+
+      <p>A big Σ is just a for-loop with an accumulator. Once you read it that way, most scary formulas turn into three lines of code.</p>
+
+      <div class="math">$$\sum_{i=1}^{n} a_i = a_1 + a_2 + \dots + a_n \qquad \prod_{i=1}^{n} a_i = a_1 \cdot a_2 \cdots a_n$$</div>
+
+<pre class="codeblock"><span class="cm">// Σ: start at 0, keep adding</span>
+sum ← <span class="num">0</span>
+<span class="kw">for</span> i ← <span class="num">1</span> <span class="kw">to</span> n: sum ← sum + a[i]
+
+<span class="cm">// Π: start at 1, keep multiplying</span>
+prod ← <span class="num">1</span>
+<span class="kw">for</span> i ← <span class="num">1</span> <span class="kw">to</span> n: prod ← prod × a[i]</pre>
+
+      <ul>
+        <li>Σ<sub>i ∈ S</sub> loops over the elements of the set S.</li>
+        <li>Σ<sub>i&lt;j</sub> loops over every pair with i less than j, which is a double loop.</li>
+        <li>Σ<sub>x</sub> with no bounds means "over everything sensible", usually the whole domain.</li>
+        <li>Σ<sub>d | n</sub> loops over the divisors of n.</li>
+        <li>An empty sum is 0 and an empty product is 1. That's why 0! = 1.</li>
+      </ul>
+
+      <p>The same pattern works with other operators: ⋃ for a union of many sets, ⋂ for intersection, ⨁ for a direct sum (or for XOR-ing many values), and max or min taken over an index.</p>
+
+      <p><strong>Subscripts and superscripts.</strong> x<sub>i</sub> is the i-th item, and x<sub>ij</sub> is row i, column j. Superscripts are ambiguous. x² is a square, but x<sup>(k)</sup> with parentheses is usually the k-th iterate or k-th sample, not a power.</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Notation</th><th>Read as</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>n!</th><td>n factorial</td><td>n·(n−1)···1, the number of ways to order n items</td></tr>
+            <tr><th>(n over k)</th><td>n choose k</td><td>n! / (k!(n−k)!), the number of ways to pick k of n</td></tr>
+            <tr><th>a | b</th><td>a divides b</td><td>b = ka for some integer k</td></tr>
+            <tr><th>a ∤ b</th><td>a does not divide b</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Identities worth recognising on sight:</p>
+      <div class="math">$$\sum_{i=1}^{n} i = \frac{n(n+1)}{2} \qquad \sum_{i=0}^{n} r^i = \frac{r^{n+1}-1}{r-1} \qquad \sum_{k=0}^{n} \binom{n}{k} = 2^n$$</div>
+
+      <!-- ===================================================== -->
+      <h2 id="asymptotics">Asymptotics: O, Ω, Θ and friends</h2>
+
+      <p>Asymptotic notation compares how fast functions grow as n → ∞, ignoring constants and small inputs. Think of the five main symbols as ≤, ≥, =, &lt; and &gt;, applied to growth rates.</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Notation</th><th>Read as</th><th>Like</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>f = O(g)</th><td>big-O</td><td>f ≤ g</td><td>f grows no faster than g (upper bound)</td></tr>
+            <tr><th>f = Ω(g)</th><td>big-Omega</td><td>f ≥ g</td><td>f grows at least as fast (lower bound)</td></tr>
+            <tr><th>f = Θ(g)</th><td>big-Theta</td><td>f = g</td><td>same growth rate (tight bound)</td></tr>
+            <tr><th>f = o(g)</th><td>little-o</td><td>f &lt; g</td><td>f/g → 0</td></tr>
+            <tr><th>f = ω(g)</th><td>little-omega</td><td>f &gt; g</td><td>f/g → ∞</td></tr>
+            <tr><th>f ~ g</th><td>asymptotic to</td><td>f ≈ g</td><td>f/g → 1, constants included</td></tr>
+            <tr><th>Õ(g)</th><td>soft-O</td><td></td><td>O(g), ignoring log factors</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The formal definition of big-O is worth reading slowly once, because it's the template for a lot of other definitions:</p>
+
+      <div class="math">$$f(n) = O(g(n)) \iff \exists\, c > 0,\ \exists\, n_0 \ \ \forall n \ge n_0 : \ |f(n)| \le c \cdot g(n)$$</div>
+
+      <p>Read it as "there's a constant c and a starting point n₀ such that, past n₀, f is always at most c times g." Look at the quantifier order. You choose c and n₀ first, and then they have to work for every larger n.</p>
+
+      <p><strong>The equals sign is lying to you.</strong> f = O(g) really means f ∈ O(g), where O(g) is a set of functions. So O(n) = O(n²) is true, but O(n²) = O(n) is false. The "=" only goes one way.</p>
+
+      <p><strong>O inside expressions.</strong> n² + O(n) means "n² plus some function that's at most linear". 2<sup>O(n)</sup> means "2 raised to something at most linear", which is a much bigger class than O(2ⁿ).</p>
+
+      <p><strong>Growth ladder.</strong> Each of these eventually dominates the one before it: 1 &lt; log n &lt; √n &lt; n &lt; n log n &lt; n² &lt; n<sup>k</sup> &lt; 2ⁿ &lt; n! &lt; nⁿ.</p>
+
+      <p><strong>Complexity extras.</strong></p>
+      <ul>
+        <li><em>poly(n)</em> means some polynomial in n, with the degree unspecified. "Efficient" usually means polynomial time.</li>
+        <li><em>polylog(n)</em> means (log n)<sup>c</sup> for some constant c.</li>
+        <li>P, NP, BPP and PSPACE are classes of problems, usually set in sans-serif or bold. "L ∈ NP" means the problem L is in NP.</li>
+        <li>A ≤<sub>p</sub> B means A reduces to B in polynomial time, so B is at least as hard as A.</li>
+      </ul>
+
+      <!-- ===================================================== -->
+      <h2 id="probability">Probability</h2>
+
+      <p>Randomised algorithms, machine learning, networking and statistics papers are all full of statements about probabilities. This is the section to know cold.</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Notation</th><th>Read as</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>Pr[A], P(A)</th><td>probability of A</td><td>a number in [0, 1]</td></tr>
+            <tr><th>Pr[A | B]</th><td>A given B</td><td>Pr[A ∧ B] / Pr[B]</td></tr>
+            <tr><th>Pr<sub>x~D</sub>[A]</th><td>over x drawn from D</td><td>the subscript tells you what's random</td></tr>
+            <tr><th>X ~ D</th><td>X is distributed as D</td><td>X is a random variable with distribution D</td></tr>
+            <tr><th>E[X], 𝔼[X]</th><td>expected value</td><td>the probability-weighted average</td></tr>
+            <tr><th>Var(X)</th><td>variance</td><td>E[(X − E[X])²]</td></tr>
+            <tr><th>X ⊥ Y</th><td>X independent of Y</td><td>Pr[X, Y] = Pr[X]·Pr[Y]</td></tr>
+            <tr><th>i.i.d.</th><td>independent, identically distributed</td><td>separate samples from the same distribution</td></tr>
+            <tr><th>U(S)</th><td>uniform over S</td><td>every element of S is equally likely</td></tr>
+            <tr><th>𝒩(μ, σ²)</th><td>normal (Gaussian)</td><td>mean μ, variance σ²</td></tr>
+            <tr><th>Ber(p), Bin(n, p)</th><td>Bernoulli, binomial</td><td>a coin with bias p, and the count of heads in n flips</td></tr>
+            <tr><th>Pois(λ)</th><td>Poisson</td><td>the number of events in an interval at average rate λ</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>The subscript tells you what's random.</strong> This is the most common source of confusion, so read it carefully:</p>
+
+      <div class="math">$$\Pr_{(x, y) \sim \mathcal{D}} \left[ h(x) \neq y \right]$$</div>
+
+      <p>Read it as "the probability, over a random example (x, y) drawn from the distribution 𝒟, that the predictor h gets the label wrong." That's the error rate of a classifier. Some papers put the randomness after a colon inside the brackets instead.</p>
+
+      <p><strong>Core rules.</strong> From left to right: the union bound (used in practically every proof), linearity of expectation (which holds even without independence) and Bayes' rule.</p>
+      <div class="math">$$\Pr[A \cup B] \le \Pr[A] + \Pr[B] \qquad \mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y] \qquad \Pr[A \mid B] = \frac{\Pr[B \mid A]\Pr[A]}{\Pr[B]}$$</div>
+
+      <p><strong>Comparing distributions.</strong> Δ(P, Q) or d<sub>TV</sub>(P, Q) is the statistical (total variation) distance. D<sub>KL</sub>(P ‖ Q) is the Kullback–Leibler divergence, which measures how badly Q approximates P and isn't symmetric. P ≈ Q means "close", and the paper will say in what sense.</p>
+
+      <!-- ===================================================== -->
+      <h2 id="linalg">Linear algebra</h2>
+
+      <p>Here the font tells you the type. A bold lowercase <strong>v</strong> is a vector, a bold uppercase <strong>A</strong> is a matrix, and a plain italic <em>x</em> is a scalar. Machine learning, graphics, signal processing and quantum computing papers are written almost entirely in this notation.</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Notation</th><th>Read as</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>ℝⁿ</th><td>n-dimensional space</td><td>vectors of n real numbers</td></tr>
+            <tr><th>ℝ<sup>m×n</sup></th><td>m-by-n matrices</td><td>m rows, n columns</td></tr>
+            <tr><th>A<sub>ij</sub></th><td>entry i, j</td><td>row i, column j</td></tr>
+            <tr><th>Aᵀ, A<sup>⊤</sup></th><td>A transpose</td><td>rows become columns</td></tr>
+            <tr><th>A<sup>†</sup></th><td>conjugate transpose</td><td>also written A<sup>*</sup> or A<sup>H</sup>; quantum papers use it everywhere</td></tr>
+            <tr><th>A⁻¹</th><td>A inverse</td><td>AA⁻¹ = I, which exists iff det A ≠ 0</td></tr>
+            <tr><th>I, I<sub>n</sub></th><td>identity</td><td>1s on the diagonal, 0 elsewhere</td></tr>
+            <tr><th>det(A)</th><td>determinant</td><td>the volume scaling factor; 0 means not invertible</td></tr>
+            <tr><th>tr(A)</th><td>trace</td><td>the sum of the diagonal</td></tr>
+            <tr><th>rank(A)</th><td>rank</td><td>the number of linearly independent rows</td></tr>
+            <tr><th>⟨u, v⟩, u·v, uᵀv</th><td>inner product</td><td>Σ uᵢvᵢ</td></tr>
+            <tr><th>‖v‖, ‖v‖₂</th><td>norm</td><td>√⟨v, v⟩, i.e. the length</td></tr>
+            <tr><th>‖v‖₁, ‖v‖<sub>∞</sub></th><td>1-norm, ∞-norm</td><td>Σ|vᵢ|, and max |vᵢ|</td></tr>
+            <tr><th>A ⊗ B</th><td>tensor product</td><td>combines spaces; the core of quantum notation</td></tr>
+            <tr><th>A ⊙ B</th><td>Hadamard product</td><td>element-wise multiplication</td></tr>
+            <tr><th>u ⊥ v</th><td>orthogonal</td><td>⟨u, v⟩ = 0</td></tr>
+            <tr><th>span(S)</th><td>span</td><td>every linear combination of the vectors in S</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Eigenvalues.</strong> Av = λv says that A only scales v, by a factor λ. v is the eigenvector and λ is its eigenvalue.</p>
+
+      <p><strong>Matrix-vector product as code.</strong> (Av)ᵢ = Σⱼ Aᵢⱼvⱼ, so each output entry is the dot product of one row of A with v.</p>
+
+      <p><strong>Dirac (bra-ket) notation</strong> is what you'll see in quantum computing and physics papers. |ψ⟩ ("ket psi") is a column vector, i.e. a quantum state. ⟨ψ| ("bra psi") is its conjugate transpose. ⟨φ|ψ⟩ is the inner product of the two, and |ψ⟩⟨ψ| is an outer product, a matrix that projects onto ψ. The computational basis is |0⟩, |1⟩, and the Hadamard basis is |+⟩, |−⟩.</p>
+
+      <!-- ===================================================== -->
+      <h2 id="algebra">Modular arithmetic and algebra</h2>
+
+      <p>Number theory, coding theory and cryptography all work in finite structures, and papers name those structures in one or two symbols. Learning these few will save you pages of confusion.</p>
+
+      <p><strong>"mod" has two meanings.</strong> As an operator, 17 mod 5 = 2 is the remainder. Watch out with negatives: the <code>%</code> operator in C-family languages keeps the sign, so −3 % 5 is −3, while the maths answer is 2. As a relation, a ≡ b (mod n) means n divides a − b, so 17 ≡ 2 ≡ −3 (mod 5).</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Notation</th><th>Read as</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>ℤ<sub>n</sub>, ℤ/nℤ</th><td>integers mod n</td><td>{0, …, n−1}, with + and × wrapping around</td></tr>
+            <tr><th>ℤ<sub>n</sub><sup>*</sup></th><td>multiplicative group mod n</td><td>the elements that have an inverse, i.e. those coprime to n</td></tr>
+            <tr><th>gcd(a, b)</th><td>greatest common divisor</td><td>gcd = 1 means coprime</td></tr>
+            <tr><th>a⁻¹ mod n</th><td>inverse of a mod n</td><td>a·a⁻¹ ≡ 1 (mod n), found with extended Euclid</td></tr>
+            <tr><th>φ(n)</th><td>Euler's totient</td><td>|ℤ<sub>n</sub><sup>*</sup>|</td></tr>
+            <tr><th>𝔽<sub>q</sub>, GF(q)</th><td>finite field of size q</td><td>q is a prime power, and 𝔽<sub>p</sub> = ℤ<sub>p</sub> for a prime p</td></tr>
+            <tr><th>𝔽<sub>q</sub>[X]</th><td>polynomials over 𝔽<sub>q</sub></td><td>coefficients in 𝔽<sub>q</sub>, variable X</td></tr>
+            <tr><th>⟨g⟩</th><td>group generated by g</td><td>{g⁰, g¹, g², …}</td></tr>
+            <tr><th>ord(g)</th><td>order of g</td><td>the smallest k &gt; 0 with gᵏ = 1</td></tr>
+            <tr><th>G ≅ H</th><td>G isomorphic to H</td><td>same structure, different names</td></tr>
+            <tr><th>H ≤ G</th><td>subgroup</td><td>H is a subgroup of G</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>The structure ladder.</strong> Each level adds rules on top of the one before.</p>
+      <ol>
+        <li><strong>Group</strong> (G, ·): one associative operation, with an identity and inverses. Example: ℤ<sub>n</sub> under +.</li>
+        <li><strong>Abelian group</strong>: a group whose operation also commutes. Example: ℤ under +.</li>
+        <li><strong>Ring</strong>: two operations, + and ×, where × doesn't need inverses. Example: ℤ<sub>n</sub>, or polynomials with integer coefficients.</li>
+        <li><strong>Field</strong>: a ring where every non-zero element has a multiplicative inverse. Example: 𝔽<sub>p</sub>, ℚ or ℝ.</li>
+      </ol>
+
+      <p><strong>Additive vs multiplicative writing.</strong> The same kind of group can be written additively, as a + b and n·a ("a added to itself n times"), or multiplicatively, as ab and aⁿ. It's only a choice of notation, but it changes how every formula after it looks.</p>
+
+      <p><strong>Quotients.</strong> A/B means "A, with elements that differ by something in B treated as the same". ℤ/nℤ is the integers with every multiple of n collapsed to 0, which is exactly "mod n".</p>
+
+      <!-- ===================================================== -->
+      <h2 id="calculus">Calculus and analysis</h2>
+
+      <p>You mostly need these for machine learning, information theory, physics and signal-processing papers. Knowing the notation matters more than knowing the techniques.</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Notation</th><th>Read as</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>lim<sub>n→∞</sub> aₙ</th><td>limit as n → ∞</td><td>the value aₙ approaches</td></tr>
+            <tr><th>f′(x), df/dx</th><td>derivative of f</td><td>rate of change (a dot on top, ḟ, means a time derivative)</td></tr>
+            <tr><th>∂f/∂x</th><td>partial derivative</td><td>how f changes when only x varies</td></tr>
+            <tr><th>∇f</th><td>gradient ("nabla f")</td><td>the vector of all partials, which points uphill</td></tr>
+            <tr><th>∫<sub>a</sub><sup>b</sup> f(x) dx</th><td>integral from a to b</td><td>the area under f; dx names the variable</td></tr>
+            <tr><th>sup S, inf S</th><td>supremum, infimum</td><td>the least upper / greatest lower bound, which always exists for bounded sets, unlike max/min</td></tr>
+            <tr><th>argmax<sub>x</sub> f(x)</th><td>argmax</td><td>the x that maximises f (you get the input, not the value)</td></tr>
+            <tr><th>∝</th><td>proportional to</td><td>equal up to a constant factor</td></tr>
+            <tr><th>≪, ≫</th><td>much less / greater than</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>max vs argmax</strong> is a classic trip-up. For f(x) = −(x − 3)², max f = 0 but argmax f = 3.</p>
+
+      <p><strong>The ε–δ definition of a limit.</strong> The same quantifier shape turns up all over analysis, so it's worth reading slowly:</p>
+
+      <div class="math">$$\lim_{x \to a} f(x) = L \iff \forall \varepsilon > 0 \ \exists \delta > 0 \ \forall x : 0 &lt; |x - a| &lt; \delta \Rightarrow |f(x) - L| &lt; \varepsilon$$</div>
+
+      <p>Read it as "however close (ε) you demand f be to L, there's a neighbourhood (δ) around a where it's at least that close."</p>
+
+      <p><strong>Information theory.</strong></p>
+      <ul>
+        <li>H(X) is the Shannon entropy, −Σ p(x) log p(x), measured in bits when the log is base 2.</li>
+        <li>H<sub>∞</sub>(X) is the min-entropy, −log max<sub>x</sub> Pr[X = x]. It measures how hard X is to guess in one try.</li>
+        <li>I(X; Y) is the mutual information, and H(X | Y) is the conditional entropy.</li>
+      </ul>
+
+      <!-- ===================================================== -->
+      <h2 id="graphs">Graphs</h2>
+
+      <p>Networks, compilers, databases and scheduling papers all reduce problems to graphs, and graph notation is compact enough to be confusing.</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Notation</th><th>Read as</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>G = (V, E)</th><td>graph G</td><td>a set of vertices V and a set of edges E</td></tr>
+            <tr><th>n, m</th><td></td><td>by convention n = |V| and m = |E|, so "O(n + m)" means linear in the graph size</td></tr>
+            <tr><th>{u, v}, uv</th><td>undirected edge</td><td>an edge joining u and v</td></tr>
+            <tr><th>(u, v), u → v</th><td>directed edge (arc)</td><td>an edge from u to v</td></tr>
+            <tr><th>N(v)</th><td>neighbourhood of v</td><td>the vertices adjacent to v</td></tr>
+            <tr><th>deg(v), d(v)</th><td>degree of v</td><td>the number of edges at v; directed graphs split it into in- and out-degree</td></tr>
+            <tr><th>w : E → ℝ</th><td>weight function</td><td>a cost or length on each edge</td></tr>
+            <tr><th>d(u, v)</th><td>distance</td><td>the length of a shortest path from u to v</td></tr>
+            <tr><th>G[S]</th><td>induced subgraph</td><td>the vertices in S and every edge between them</td></tr>
+            <tr><th>Kₙ</th><td>complete graph</td><td>n vertices, every pair joined</td></tr>
+            <tr><th>Δ(G), δ(G)</th><td>max / min degree</td><td>yes, Δ also means a distance elsewhere, so check</td></tr>
+            <tr><th>χ(G)</th><td>chromatic number</td><td>the fewest colours that colour G with no edge joining two vertices of the same colour</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>A graph is often stored as an adjacency matrix A, where A<sub>uv</sub> = 1 if there's an edge from u to v. That's where graph theory and linear algebra meet: (A<sup>k</sup>)<sub>uv</sub> counts the walks of length k from u to v.</p>
+
+      <!-- ===================================================== -->
+      <h2 id="cs">Computer science conventions</h2>
+
+      <p>CS papers add a layer of programming-like notation on top of the maths: strings, algorithms as objects, and pseudocode.</p>
+
+      <h3>Strings and bits</h3>
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Notation</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>{0,1}ⁿ</th><td>all bit strings of length n</td></tr>
+            <tr><th>{0,1}<sup>*</sup></th><td>all finite bit strings, of any length, including the empty one</td></tr>
+            <tr><th>Σ<sup>*</sup>, Σ⁺</th><td>all strings over the alphabet Σ, and the non-empty ones only</td></tr>
+            <tr><th>ε</th><td>the empty string (elsewhere ε is a small number, so be careful)</td></tr>
+            <tr><th>x ‖ y, xy</th><td>concatenation</td></tr>
+            <tr><th>x ⊕ y</th><td>bitwise XOR</td></tr>
+            <tr><th>|x|</th><td>length of x</td></tr>
+            <tr><th>x[i], xᵢ</th><td>the i-th symbol (0- or 1-indexed, so check)</td></tr>
+            <tr><th>1ⁿ</th><td>n ones, i.e. n written in unary, so that an algorithm's running time can be measured in n</td></tr>
+            <tr><th>L(M)</th><td>the language of M: the set of strings the machine or grammar M accepts</td></tr>
+            <tr><th>⊥</th><td>"bottom": failure, an undefined result, or "no answer"</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Algorithms and pseudocode</h3>
+      <ul>
+        <li><code>x ← e</code> and <code>x := e</code> both mean assignment. Papers use ← so that = can stay a comparison.</li>
+        <li><code>y ← A(x)</code> means run algorithm A on input x and call the output y. If A is randomised, y is a random variable.</li>
+        <li>Algorithm names are usually set in small caps or sans-serif, e.g. <span style="font-variant: small-caps">Dijkstra</span>(G, s).</li>
+        <li>A<sup>O</sup> means A has <strong>oracle access</strong> to O. It can query O as a black box and get answers in one step, without seeing how O works.</li>
+        <li>"Returns ⊥" means the algorithm reports failure.</li>
+      </ul>
+
+      <!-- ===================================================== -->
+      <h2 id="greek">Greek letters and what they usually mean</h2>
+
+      <p>Greek letters are just variable names, but every field has its habits. Knowing them lets you guess a symbol's type before you find its definition.</p>
+
+      <div class="table-wrap notation">
+        <table>
+          <thead><tr><th>Letter</th><th>Name</th><th>Usually means</th></tr></thead>
+          <tbody>
+            <tr><th>α, β</th><td>alpha, beta</td><td>parameters, weights, angles, significance levels</td></tr>
+            <tr><th>γ, Γ</th><td>gamma</td><td>a constant or gap, or the discount factor in RL; Γ is the gamma function</td></tr>
+            <tr><th>δ, Δ</th><td>delta</td><td>a small quantity or failure probability; Δ is a change, a difference or a max degree</td></tr>
+            <tr><th>ε</th><td>epsilon</td><td>a small positive number or an error, or the empty string</td></tr>
+            <tr><th>ζ</th><td>zeta</td><td>the Riemann zeta function, or a damping ratio</td></tr>
+            <tr><th>η</th><td>eta</td><td>a learning rate or an efficiency</td></tr>
+            <tr><th>θ, Θ</th><td>theta</td><td>an angle or model parameters; Θ is the tight asymptotic bound</td></tr>
+            <tr><th>κ</th><td>kappa</td><td>a condition number or a curvature</td></tr>
+            <tr><th>λ, Λ</th><td>lambda</td><td>an eigenvalue, a rate, a wavelength or a regularisation weight; Λ is a diagonal matrix of eigenvalues</td></tr>
+            <tr><th>μ</th><td>mu</td><td>a mean or a measure</td></tr>
+            <tr><th>ν</th><td>nu</td><td>a frequency</td></tr>
+            <tr><th>π, Π</th><td>pi</td><td>3.14159…, a permutation, or a policy in RL; Π is a product</td></tr>
+            <tr><th>ρ</th><td>rho</td><td>a correlation, a density or a rate</td></tr>
+            <tr><th>σ, Σ</th><td>sigma</td><td>a standard deviation; Σ is a sum, a covariance matrix or an alphabet</td></tr>
+            <tr><th>τ</th><td>tau</td><td>a time constant or a threshold</td></tr>
+            <tr><th>φ, Φ</th><td>phi</td><td>an angle or phase, the golden ratio, or Euler's totient; Φ is the normal CDF</td></tr>
+            <tr><th>χ</th><td>chi</td><td>the chi-squared distribution (χ²), or a chromatic number</td></tr>
+            <tr><th>ψ, Ψ</th><td>psi</td><td>a wave function or quantum state</td></tr>
+            <tr><th>ω, Ω</th><td>omega</td><td>an angular frequency; Ω is the asymptotic lower bound or a sample space</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Other alphabets show up too: calligraphic 𝒜, 𝒟 and ℒ for families, distributions and loss functions, fraktur 𝔤 for Lie algebras and other algebraic objects, and the Hebrew ℵ₀ ("aleph-null") for the size of ℕ.</p>
+
+      <!-- ===================================================== -->
+      <h2 id="practice">Practice: decode these</h2>
+
+      <p>Read each one aloud before you look at the translation. If you can do all five, you can get through the preliminaries of most papers.</p>
+
+      <h3>1. A conjecture in pure logic</h3>
+      <div class="math">$$\forall n \in \mathbb{N} : \big( n > 2 \wedge 2 \mid n \big) \Rightarrow \exists\, p, q \in \mathbb{P} : n = p + q$$</div>
+      <p>ℙ is the set of primes. "Every even number greater than 2 is the sum of two primes." That's Goldbach's conjecture, still unproven, in one line.</p>
+
+      <h3>2. The handshake lemma</h3>
+      <div class="math">$$\sum_{v \in V} \deg(v) = 2\,|E|$$</div>
+      <p>Add up the degree of every vertex and you get twice the number of edges, because each edge touches exactly two vertices and gets counted once at each end.</p>
+
+      <h3>3. Gradient descent</h3>
+      <div class="math">$$\theta_{t+1} = \theta_t - \eta \, \nabla_\theta \mathcal{L}(\theta_t), \qquad \mathcal{L}(\theta) = \frac{1}{n} \sum_{i=1}^{n} \ell\big(f_\theta(x_i), y_i\big)$$</div>
+      <p>To get the next parameters, take the current ones and step a distance η (the learning rate) against the gradient of the loss. The loss ℒ is the average, over n training examples, of how wrong the model f<sub>θ</sub> is on each one.</p>
+
+      <h3>4. A complexity claim</h3>
+      <div class="math">$$T(n) = 2T(n/2) + O(n) \ \Rightarrow\ T(n) = \Theta(n \log n)$$</div>
+      <p>An algorithm that splits its input in half, recurses on both halves and does linear extra work (merge sort) takes time that grows like n log n, tightly.</p>
+
+      <h3>5. Markov's inequality</h3>
+      <div class="math">$$X \ge 0,\ a > 0 \ \Rightarrow\ \Pr[X \ge a] \le \frac{\mathbb{E}[X]}{a}$$</div>
+      <p>If a random variable is never negative, the chance it reaches at least a is at most its average divided by a. For example, if the average response time is 100 ms, at most 10% of requests take 1 s or more.</p>
+
+      <h2>When you get stuck</h2>
+      <p>If a symbol isn't here, check the paper's own preliminaries first. If you want the TeX behind it, <a href="https://detexify.kirelabs.org/classify.html">Detexify</a> lets you draw the symbol and gives you the command, and the "TeX source" download on arXiv shows you exactly how any formula was written.</p>
+
+      <h2>Happy reading</h2>
+        </article>
+      </div>
+      <div class="post-actions">
+        <a class="btn btn-ghost" href="/blog/">back</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <p class="who"><strong>rodfer's archive</strong>all opinions are mere hallucinations</p>
+      <nav aria-label="Footer">
+        <a href="/blog/">blog</a>
+        <a href="/articles/">articles</a>
+        <a href="/tracks/">tracks</a>
+        <a href="https://github.com/rodfer0x80">github</a>
+        <a href="/docs/rodfer0x80.pdf">CV</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

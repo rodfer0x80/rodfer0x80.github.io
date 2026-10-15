@@ -392,6 +392,45 @@ article code {
 .codeblock .kw  { color: var(--accent); }
 .codeblock .str { color: #ffe1b8; }
 .codeblock .num { color: var(--accent-3); }
+.codeblock .cm  { color: var(--fg-3); }   /* code comments: recede behind the code */
+
+/* Lists inside posts: match paragraph colour/rhythm (browser defaults were too tight). */
+article ul, article ol { color: #d8d8de; margin: 0 0 1.15rem; padding-left: 1.4rem; }
+article li { margin: 0.35rem 0; }
+article li::marker { color: var(--accent); }
+article strong { color: #fff; font-weight: 600; }
+
+/* Table of contents for long posts: a quiet two-column box of anchor links. */
+.toc {
+  margin: 1.8rem 0 0.6rem;
+  padding: 1.1rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+.toc ol { columns: 2; column-gap: 2rem; margin: 0; font-size: 0.95rem; }
+.toc li { margin: 0.2rem 0; break-inside: avoid; }
+.toc a { border-bottom: 0; }
+@media (max-width: 560px) { .toc ol { columns: 1; } }
+
+/* Display maths (KaTeX). Long formulas scroll sideways instead of
+   blowing out the sheet on phones. Before KaTeX loads, or if it fails,
+   the raw TeX shows in mono so it still reads as "source". */
+article .math {
+  margin: 0.4rem 0 1.4rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--accent-2);
+}
+article .math .katex-display { margin: 0.6rem 0; font-family: initial; }
+article .math .katex { font-size: 1.12rem; color: #f2f2f4; }
+/* Thin orange scrollbar = visual hint that a clipped formula scrolls sideways. */
+article .math { scrollbar-width: thin; scrollbar-color: var(--edge-hot) transparent; padding-bottom: 0.3rem; }
+article .math::-webkit-scrollbar { height: 4px; }
+article .math::-webkit-scrollbar-thumb { background: var(--edge-hot); border-radius: 4px; }
+@media (max-width: 560px) { article .math .katex { font-size: 0.98rem; } }
 
 .post-actions { display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; margin: 2.6rem 0 0; }
 
@@ -417,6 +456,34 @@ tbody th { color: #fff; font-weight: 600; padding: 0.65rem 1rem; background: rgb
 tbody td { color: #cfcfd6; text-align: center; padding: 0.65rem 1rem; border-bottom: 1px solid var(--line); }
 tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 tbody tr:hover td, tbody tr:hover th { background: rgba(255, 149, 28, 0.07); }
+
+/* Reference tables (symbol | reading | meaning): prose cells read better
+   left-aligned; keep the symbol column from wrapping mid-expression. */
+.table-wrap.notation thead th { text-align: left; }
+.table-wrap.notation tbody th { text-align: left; white-space: nowrap; font-weight: 500; color: var(--accent-2); }
+.table-wrap.notation tbody td { text-align: left; }
+
+/* Phones: three columns don't fit, so each row stacks into a small card —
+   symbol and its reading on one line (reading muted), meaning underneath
+   at full width. The header row is hidden because columns no longer line up. */
+@media (max-width: 560px) {
+  .table-wrap.notation table,
+  .table-wrap.notation tbody { display: block; }
+  .table-wrap.notation thead { display: none; }
+  .table-wrap.notation tr {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.8rem;
+    padding: 0.7rem 0.95rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .table-wrap.notation tr:last-child { border-bottom: 0; }
+  .table-wrap.notation tbody th,
+  .table-wrap.notation tbody td { padding: 0; border: 0; background: none; }
+  .table-wrap.notation tbody td:not(:last-child) { color: var(--fg-3); }
+  .table-wrap.notation tbody td:last-child { grid-column: 1 / -1; padding-top: 0.25rem; }
+  .table-wrap.notation tbody td:empty { display: none; }
+}
 
 /* ============================================================
    Tracks
